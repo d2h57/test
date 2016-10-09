@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="org.dy.example.dao.TrackDao">
+	<select id="getAllTrack" resultType="String">
+    	select id from track_201610 where start_time &lt; str_to_date('2016-10-09 11:30:00','%Y-%m-%d %H:%i:%s') 
+    	and count > 1 order by start_time desc
+    </select>
+    <update id="updateTrackDistince" parameterType="com.alibaba.fastjson.JSONObject">
+    	update track_201610 set distance = #{distance} where id = #{id}
+    </update>
+    <select id="getTrackPoint" parameterType="String" resultType="com.alibaba.fastjson.JSONObject">
+    	select latitude,longitude from event_data_201610 where track_id = #{trackId}
+order by time asc
+    </select>
+</mapper>

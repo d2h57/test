@@ -1,0 +1,36 @@
+{
+  "configuration": {
+    "name": "Default",
+    "appenders": {
+    	 "Console": {
+        "name": "Console-Appender",
+        "target": "SYSTEM_OUT",
+        "PatternLayout": {
+          "pattern": "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+        }
+      },
+      "RollingFile": {
+        "name": "RollingFile-Appender",
+        "fileName": "../logs/spring-boot-test.log",
+        "filePattern": "../logs/srm.log.%d{yyyy-MM-dd-HH-mm-ss}.gz",
+        "PatternLayout": {
+          "pattern": "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+        },
+        "Policies": {
+          "SizeBasedTriggeringPolicy": {
+            "size": "20MB"
+          }
+        },
+        "DefaultRolloverStrategy": {
+          "max": "10"
+        }
+      }
+    },
+    "loggers": {
+      "root": {
+        "level": "debug",
+        "appender-ref": {"ref": "RollingFile-Appender"}
+      }
+    }
+  }
+}

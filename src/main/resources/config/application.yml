@@ -1,0 +1,40 @@
+spring:
+    datasource:
+      url: jdbc:mysql://device.newsmycloud.cn/srm
+      username: gts
+      password: opengts
+      driver-class-name: com.mysql.jdbc.Driver
+    profiles:
+      active: dev
+    
+server:
+    port: 9001
+    
+mybatis:
+    mapper-locations:
+      classpath:mapper/*.xml
+    type-aliases-package: org.dy.example.model
+    
+info:
+   app:
+    encoding:UTF-8
+   java:
+      source:1.7
+      target:1.7
+
+endpoints:
+  health:
+     path:/local_health
+     
+management:
+  context-path: /manager
+  port: 8081
+  
+---
+spring:
+    profiles: dev
+logging:
+  config: classpath:config/log4j2-dev.json
+---
+spring:
+    profiles: prod
